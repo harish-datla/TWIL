@@ -5,18 +5,18 @@ title: Home
 
 # My Combined Documentation
 
-## Section 1
+## AI From Scratch
 
 {% include readme1.md %}
 
 ---
 
-## Section 2
+## Software Architecture
 
 {% include readme2.md %}
 
 ---
 
-## Section 3
+## Security, Devops and DevSecops
 
 {% include readme3.md %}
