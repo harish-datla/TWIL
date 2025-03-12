@@ -28,6 +28,22 @@ The page you are currently viewing is `README.md` in the docs directory, with pa
 - Read the tutorial content under template notes.
 - View this live demo site.
 
+## Menu
+ 
+ Some info on how to make a site like this and how it works.
+ 
+ - [About](about.md)
+ - [Features](features.md)
+ - [Limitations](limitations.md)
+ - [What about a Wiki?](wiki.md)
+ 
+ 
+ ## Source
+ 
+ View source on GitHub:
+ 
+ [![MichaelCurrin - gh-pages-no-jekyll](https://img.shields.io/static/v1?label=MichaelCurrin&message=gh-pages-no-jekyll&color=blue&logo=github)](https://github.com/MichaelCurrin/gh-pages-no-jekyll)
+ 
 
 ## Documentation template
 
