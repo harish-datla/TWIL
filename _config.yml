@@ -1,10 +1,3 @@
 markdown: kramdown
 kramdown:
   math_engine: mathjax
-plugins:
-  - jekyll-relative-links
-relative_links:
-  enabled: true
-  collections: true
-include:
-  index.md
