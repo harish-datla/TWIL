@@ -1,6 +1,6 @@
 ## Math Foundations
 
-It took very long for humans to invent the concept of counting. It was just 42k years earlier that the [earliest evidence](https://en.wikipedia.org/wiki/History_of_ancient_numeral_systems) for counting was found. Ancient humans used to incise parallel marks on a baboon's bone for each numerical value (e.g., 1 is I, 2 is II, 3 is III, 4 is II|I—you get it).
+It took very long for humans to invent the concept of counting. It was just 42k years earlier that the [earliest evidence](https://en.wikipedia.org/wiki/History_of_ancient_numeral_systems) for counting was found. Ancient humans used to incise parallel marks on a baboon's bone for each numerical value (e.g., 1 is I, 2 is II, 3 is III, 4 is IIII—you get it).
 
 It took approximately 40k years more (or perhaps even longer, as we can’t pinpoint exactly when counting was invented) to reach the famous Roman numeral system, and a thousand more years to develop the present Arabic numerals (originating in India and later adopted and spread by Arabic mathematicians). It was only about 500 years ago that the world fully adopted the current Arabic numeral system.
 
