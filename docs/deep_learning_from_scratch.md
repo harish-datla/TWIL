@@ -66,6 +66,10 @@ It took approximately 40k years more (or perhaps even longer, as we can’t pinp
 <details>
   <summary>Show Answer</summary>
 
+ The area of a rectangle is defined as length times breadth (`l * b`) 
+  Sure you are multiplying length and breadth, but why ? if you think of it as sweeping the length across breadth, wouldn't it make it infinite beacuse there are infinite sticks of length l across the breadth b ?
+  it is l*b because it represents the number of 1×1 squares that fit into the rectangle. There are `b` squares across the breadth and `l` rows of these squares along the length, so the total number of squares (and thus the area) is `l * b`. So area is fundamentally a counting one, there is no inherent definition other than abstraction over a square of size 1*1(no concrete proof, im making it up :) )
+
   The area of a rectangle is defined as length times breadth (`l * b`) because it represents the number of 1×1 squares that fit into the rectangle. There are `b` squares across the breadth and `l` rows of these squares along the length, so the total number of squares (and thus the area) is `l * b`.
 
   **Personal Trivia:**  
