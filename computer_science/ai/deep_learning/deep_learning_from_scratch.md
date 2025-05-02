@@ -28,9 +28,11 @@ It took approximately 40k years more (or perhaps even longer, as we can’t pinp
   <summary>Show Answer</summary>
 
   **For Discrete Values:**  
+
   Subtraction can be seen as counting the absence of something. It can also be understood as the opposite of addition; for instance, in `a - b`, you’re essentially asking: “How many units do I need to add to `b` to reach `a`?”
 
   **For Continuous (Non-Discrete) Values:**  
+
   The same ideas apply as with addition, but with a focus on the difference between the scaled values.
 </details>
 
@@ -40,9 +42,11 @@ It took approximately 40k years more (or perhaps even longer, as we can’t pinp
   <summary>Show Answer</summary>
 
   **For Discrete Values:**  
+
   Multiplication is just repeated addition. If you have `x` groups each containing `y` discrete items, multiplying them (`x * y`) gives you the total number of items. It’s a form of scaling.
 
   **For Continuous (Non-Discrete) Values:**  
+
   The concept is analogous to the discrete case, with the appropriate adjustments for continuous measures.
 </details>
 
@@ -51,7 +55,8 @@ It took approximately 40k years more (or perhaps even longer, as we can’t pinp
 <details>
   <summary>Show Answer</summary>
 
-  **For Discrete Values:**  
+  **For Discrete Values:**
+  
   Division is a bit trickier. You can think of it in several ways:
   1. **Inverse of Multiplication:** How many times does `x` fit into `y` (i.e. `z = y / x`)?
   2. **Splitting Apart**
@@ -59,7 +64,8 @@ It took approximately 40k years more (or perhaps even longer, as we can’t pinp
   4. **Consolidating**
   5. **Repeated Subtraction**
 
-  **For Continuous (Non-Discrete) Values:**  
+  **For Continuous (Non-Discrete) Values:**
+  
   The ideas are similar to multiplication, adjusted for continuous measurements.
 </details>
 
