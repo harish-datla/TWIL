@@ -5,6 +5,7 @@
 - **Functional-Paradigm**
   Elixir is majorly a functional programming language, it also has other paradigms like Metaprogramming, Process-Oriented Programming(Actor Model of Concurrency).
 - **Usecases**
+  
   [Read that could have been a BEAM](https://vereis.com/posts/you_built_an_erlang)
 - **Pattern matching** (`=`)  
   You can bind any value to a variable name using `=` opertor, and re-bind variables of any type freely.
