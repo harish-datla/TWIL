@@ -10,12 +10,15 @@ It took approximately 40k years more (or perhaps even longer, as we can’t pinp
   <summary>Show Answer</summary>
 
   **For Discrete Values:**  
+
   There isn’t an official definition per se, but addition is just counting the total of discrete quantities from individual collections (like single units, people, books, papers, letters, etc.).
 
   **For Non-Integer Real Numbers:**  
+
   It’s about finding the combined scale of the individual items—essentially, placing the collections side by side.
 
-  **For Continuous (Non-Discrete) Values:**  
+  **For Continuous (Non-Discrete) Values:**
+  
   Think of it as adding many quantifiably infinitesimal values from each continuous quantity and then scaling the result back to an integer level. For example, to add 1.43 and 2.21, you could split them into units of 0.01 (so 1.43 becomes 143 and 2.21 becomes 221), add to get 364, and then scale back to 3.64.
 </details>
 
