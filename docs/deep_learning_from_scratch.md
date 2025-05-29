@@ -1,3 +1,4 @@
+Wassup bros
 ## Math Foundations
 
 It took very long for humans to invent the concept of counting. It was just 42k years earlier that the [earliest evidence](https://en.wikipedia.org/wiki/History_of_ancient_numeral_systems) for counting was found. Ancient humans used to incise parallel marks on a baboon's bone for each numerical value (e.g., 1 is I, 2 is II, 3 is III, 4 is IIII—you get it).
