@@ -1,0 +1,4 @@
+# Relation Extraction
+
+[Back to Information Extraction](index.md)
+
