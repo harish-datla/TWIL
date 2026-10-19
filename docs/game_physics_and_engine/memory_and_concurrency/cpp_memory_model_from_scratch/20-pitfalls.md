@@ -1,0 +1,17 @@
+# Pitfalls
+
+
+Common mistakes, most of them covered in earlier sections:
+
+    volatile is not an atomic. ISO C++ volatile makes every access an observable side effect the compiler must perform, in order relative to other volatile accesses. It says nothing about the CPU's store buffer, atomicity, or ordering against other memory, so a volatile int shared between threads is a data race; std::atomic<int> isn't. Its real uses are memory-mapped I/O and similar hardware access. One trap for engine code: MSVC's /volatile:ms, the default when targeting x86 and x64, gives volatile accesses acquire/release semantics, while the default when targeting ARM is /volatile:iso, so code that leaned on the extension can break in an ARM port[43].
+    memory_order_consume doesn't do what it says. No compiler implemented the specified semantics; GCC, Clang, and MSVC all treat it as acquire[16], and C++26 deprecates it and redefines it as acquire[37]. Write acquire.
+    A fence needs atomic accesses to work through. std::atomic_thread_fence synchronizes only via an atomic store and an atomic load of the same object: a release fence before the store, an acquire fence (or an acquire load) after the load that reads it. Fence-to-fence works that way; a fence with no such pair orders nothing between threads.
+    seq_cst everywhere isn't a fix. It's correct, but it costs an XCHG per store on x86 and store-to-load stalls on ARM, and it can't repair a data structure whose logic is wrong. When seq_cst fixes a bug that acquire/release doesn't, the code almost always contains a store followed by a load of a different location that must stay in order (the SB shape: Dekker-style flags, hazard pointers, Chase-Lev's pop, a "set flag, then check whether the worker is asleep" handshake), or, far more rarely, IRIW.
+    An RMW's ordering covers both halves. fetch_add, exchange, and compare_exchange are a load and a store in one operation, and a single ordering applies to both. acq_rel is the usual choice when the RMW both consumes and publishes data; release fits an RMW that only publishes, acquire one that only consumes.
+    CAS takes two orderings. The third argument of compare_exchange is the success ordering and the optional fourth is the failure ordering. A failed CAS stores nothing, so the failure ordering can't be release or acq_rel; passing acq_rel twice is a precondition violation. Use acquire if the value read on failure feeds a dereference, relaxed otherwise.
+    Cache-line padding is platform-specific. 64 bytes on x86-64 and most ARM cores, 128 on Apple M-series and POWER. std::hardware_destructive_interference_size varies by compiler and version (64 on x86-64; 256 or 64 on AArch64, see §10), so pick the value per platform deliberately.
+    The compiler reorders around relaxed atomics too. memory_order_relaxed guarantees atomicity of that one access and nothing about surrounding memory. The compiler may move non-atomic stores across a relaxed store even on x86, where the hardware wouldn't. If the order matters, use release/acquire.
+    Racy programs have no semantics. A program with a data race (two conflicting accesses, at least one non-atomic, not ordered by happens-before) has undefined behavior. No "but the hardware shows the value 5" argument rescues it: the compiler may assume races don't happen, and optimizers do act on that.
+
+
+[Back to The C++ Memory Model from Scratch](index.md)

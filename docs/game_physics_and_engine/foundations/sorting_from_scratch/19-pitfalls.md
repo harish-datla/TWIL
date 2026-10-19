@@ -1,0 +1,16 @@
+# Pitfalls
+
+
+Use this as a review checklist. Each item is a sort bug that turns up in production code, and most of them pass tests on small, friendly inputs:
+
+    Non-strict weak ordering. std::sort requires a comparator that is a strict weak order: irreflexive (!(a < a)), asymmetric (a < b ⇒ !(b < a)), transitive (a < b ∧ b < c ⇒ a < c), and the equivalence derived from "neither is less than the other" must be transitive too. Violations are undefined behavior; in practice they show up as out-of-bounds reads and crashes (libstdc++'s unguarded partition loops rely on the ordering to stop) or as unsorted output. A common bug: comparing floats where one might be NaN. Every comparison with NaN is false, so NaN is "equivalent" to everything and equivalence stops being transitive.
+    Unstable when you needed stable. std::sort is allowed to reorder equal elements; std::stable_sort is not. A multi-pass sort (sort by depth, then by material, to get material-major order with depth inside each material) only works if the later passes are stable. The bug shows up as flickering: equal keys come out in a different order from frame to frame, so overlapping sprites swap places.
+    Comparator state. Comparators with mutable state (a counter, a cache) break the assumption that the order is fixed. The sort may call the comparator more than once on the same pair, in any order, and std::sort takes the comparator by value and may copy it, so state can end up split across copies. Stateful comparators that give inconsistent answers can crash the sort; ones that stay consistent but mutate are hard to debug.
+    Integer overflow in the comparator. In a qsort-style three-way comparator, return a - b; is only safe when the difference fits and is an integer. For 32-bit ints spanning more than half the range it overflows and flips sign: with a = 2,000,000,000 and b = −2,000,000,000, a − b is 4,000,000,000, which wraps to −294,967,296 and says a < b. For floats converted to an int result it truncates small differences to 0. Write return (a > b) - (a < b); instead.
+    Sorting a container that mutates during the sort. Iterators invalidate when the underlying container resizes. The sort can corrupt memory if a comparator triggers a container modification, for example a comparator that calls into code that loads an asset and appends to the array being sorted.
+    The 2006 Java binary-search overflow. Joshua Bloch reported that the (lo + hi) / 2 in Java's binary search overflows for arrays of 230 or more elements[17]. The same bug appears in any mergesort midpoint that uses the naive formula; lo + (hi − lo) / 2 avoids it.
+    Allocating a merge buffer in the inner loop. A mergesort that new[]s its scratch buffer for every recursive call costs more in allocation than it saves in algorithmic work. Allocate once at the top.
+    Sorting pointers when the indirection costs more than the sort. A sort that compares a->material against b->material dereferences twice per compare. Sorting 10,000 elements takes on the order of 150,000 comparisons; if those dereferences miss cache at around 30 ns each, the pointer chasing alone costs milliseconds. Pack the sort key into the array directly (the draw-call key trick).
+
+
+[Back to Sorting Algorithms](index.md)

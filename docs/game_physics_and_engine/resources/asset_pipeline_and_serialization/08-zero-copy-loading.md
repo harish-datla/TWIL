@@ -1,0 +1,13 @@
+# Zero-Copy Loading
+
+
+Parsing a level file means reading every byte, building every object and allocating each one separately, all before the first frame. Zero-copy loading skips that: it lays the cooked file out so the bytes are the in-memory image, and the engine memory-maps it (asks the OS to map the file into its address space and read pages on first touch) and uses it in place, with no parse and no per-object allocation. Cap'n Proto, a serialization format whose wire format is its in-memory format, is built on that premise is that "the encoding is appropriate both as a data interchange format and an in-memory representation," so you can mmap a file and "the OS won't even read in the parts that you don't access"[5]. FlatBuffers gives "access to serialized data without parsing/unpacking"[6]; Rust's rkyv crate lays out archived versions of your types exactly as they sit in memory, with relative pointers (offsets from the pointer's own position) in place of heap pointers, so reading is a cast rather than a parse[15].
+
+Worked example
+
+A mesh record at file offset 0x100 starts with its vertex-array reference, stored as 0x40: an offset from the reference's own position. The vertices therefore sit 0x40 bytes past that field, at file offset 0x140, wherever the OS maps the file, and the reference works without a fixup. A raw pointer saved by the tools would hold an address from the tools' own process, which means nothing in the game's.
+Zero-copy is not free, and not unconditional
+
+It requires the cooked layout to match the target's struct layout and padding, its alignment, and its endianness. Violate any one and the cast is wrong or undefined. The buffer must be aligned: mmap returns page-aligned memory, starting on a page boundary (fine), but a plain read into a Vec<u8> or malloc region is not aligned for an arbitrary type, so rkyv ships an AlignedVec for exactly this. Because the layout is the target's layout, a blob cooked for one platform is not portable to another, the same per-platform-cook point from §2. The layout work moves into the cook, and the price is layout rigidity. References become offsets or relative pointers (a raw pointer's value changes every run[10]), patched once at load or resolved on access[12]. C++ adds an object-lifetime rule on top: the bytes have to become objects before they're read as structs. C++20's implicit object creation covers a byte array used as storage for implicit-lifetime types (plain structs like this header qualify), and C++23's std::start_lifetime_as states it explicitly.
+
+[Back to Asset Pipeline & Serialization](index.md)

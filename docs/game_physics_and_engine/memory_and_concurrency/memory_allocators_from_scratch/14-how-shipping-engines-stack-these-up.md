@@ -1,0 +1,18 @@
+# How Shipping Engines Stack These Up
+
+
+Open the memory tracker of a shipping engine and you won't find one heap. You'll find several allocators running at once, each pinned to a subsystem and sometimes to a thread. The design question is which allocator serves which lifetime.
+Unreal Engine 5
+
+UE5 routes general allocation through one global FMalloc interface, with the backend chosen per platform and build configuration. The engine's allocator enum lists Ansi, Stomp, TBB, Jemalloc, Binned, Binned2, Binned3, Platform, Mimalloc, and Libpas[41]. The binned backends are Epic's own: fixed-size bins for small allocations (which dominate engine workloads) plus a separate path for large blocks, with Binned3 built on reserved virtual address ranges for 64-bit targets. Stomp is a debugging backend that places each allocation against an inaccessible page so overruns and use-after-free fault immediately, and Ansi forwards to the C runtime. On top of FMalloc, the engine provides FMemStack[5], a thread-local linear-with-markers allocator for per-frame and per-scope temporaries; FMemMark is the RAII wrapper that rewinds it when a scope ends, the marker pattern from the stack allocator section.
+Unity
+
+Unity's manual documents its native allocators: the dynamic heap allocator uses TLSF for large, long-lived allocations, and a lock-free bucket allocator takes small ones so they don't fragment the main heap[4]. The DOTS (Unity's Entities, Burst and job-system packages) and Native Collections layer adds lifetime-scoped allocators through the Allocator enum[42]: Allocator.Temp (the fastest; one per frame on the main thread and one per job), Allocator.TempJob (can be passed to jobs, must be freed within four frames), and Allocator.Persistent (the slowest, for allocations with no fixed lifetime). ECS components live in archetype chunks, fixed-size blocks that each hold entities of one component-set shape, a slab-like layout.
+Naughty Dog, Frostbite, id Tech
+
+Gyrling's 2015 GDC slides[24] describe the Naughty Dog engine's frame memory. An earlier design gave each use its own linear allocator, sized for its own worst case, and wasted 100 to 200 MiB because the worst cases never coincide. The replacement is a tagged heap of 2 MiB blocks (one large page on PS4, so one TLB entry in the CPU's cache of address translations), where every block belongs to a tag such as a frame's game-logic stage. Each allocator keeps one block per worker thread, so almost no allocation takes a lock, and freeing a tag returns all of its blocks at once. A job that sleeps and wakes on another thread just continues in that thread's block; the tag, not the thread, decides when the memory dies. Frostbite has Fredriksson's "Scope Stack Allocation" slides for the CPU-side scope allocator[28] and the FrameGraph talk for aliasing transient GPU resources within a frame[43]. id Software published its old source: the original Doom 3's idHeap in neo/idlib/Heap.cpp[44] is a tiered small-block + medium-pool + large-block layout (the BFG Edition later replaced this with thin wrappers around the platform allocator).
+The pattern across all of them
+
+Strip the names and the same pieces recur: a per-frame or per-scope linear allocator for scratch, a general-purpose allocator (TLSF or binned) for object-lifetime allocations, a separate path for large blocks (a buddy, a page-aligned heap, or reserved virtual address ranges), pools, slabs, or archetype chunks for hot fixed-size types, and generational handles or weak references for any identity that outlives a frame. Most of the engineering goes into deciding which allocation belongs to which of these, and into tracking and budgeting memory per subsystem.
+
+[Back to Memory Allocators from Scratch](index.md)

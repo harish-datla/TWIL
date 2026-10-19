@@ -1,0 +1,9 @@
+# What's next
+
+Next in the series, SMITSIMAX takes the opposite approach to a decision: instead of a designer encoding it in a tree, the AI simulates many possible futures with Monte Carlo tree search and picks the move that plays out best, including in games where both sides move at once. Beyond that, behavior trees themselves are still moving:
+
+    Machine-learned BTs. Genetic programming and reinforcement learning can build or tune tree structures from experience, and Colledanchise and Ögren cover both[3]. Learned trees are often hard to read, which undermines the debuggability advantage.
+    Generated BTs. Trees built automatically from goal specifications sit between hand-authored BTs and full planning systems; the same book's planning chapter grows a BT by backchaining from a goal[3].
+    Event-driven BTs. Not new: Champandard and Dunstan point to Bulletstorm's event-driven BT (2011) and describe a scheduler that ticks only the active behaviors[10], and Unreal has worked this way since UE4. They cut the per-tick cost for large NPC populations, and they bring the reactivity problem of §11 with them.
+    State machines back in the mix. Unreal's StateTree "is a general-purpose hierarchical state machine that combines the Selectors from behavior trees with States and Transitions from state machines"[7]. It runs state selection on demand, when a transition fires, rather than every update, which puts explicit transitions back where §11 says BTs are weakest. Epic has not deprecated Behavior Trees; the two ship side by side.
+    BTs outside NPC AI. The same structure suits other reactive decision-making, such as dialogue selection, tutorial sequencing and cutscene scripting, and robot control, where most of the formal BT research now happens. The node types stay the same; the leaf actions change.

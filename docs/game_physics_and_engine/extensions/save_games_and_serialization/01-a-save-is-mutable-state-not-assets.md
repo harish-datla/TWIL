@@ -1,0 +1,6 @@
+# A save is mutable state, not assets
+
+Lose a cooked texture and the build machine re-cooks it from the artist's file in minutes. Lose a save and sixty hours of play are gone. Serialization, turning objects into bytes and back, is one toolbox, but a save and a cooked asset are opposite jobs for it. A cooked asset is authored once, immutable at runtime, shared by every player, and regenerable from the source art. A save is written at runtime, unique to one player, and has no source: lose it and it's gone. Unreal makes the split explicit with a base class for exactly this, USaveGame, "a base class for a save game Object that can be used to save state about the game"[1].
+The save carries the versioning burden alone
+
+A cooked asset can change format freely: the build just re-cooks it from the source DCC file. A save has no source to re-cook from, so when your data layout changes in a patch, old saves on players' disks must still load. That single constraint, covered in §5, is why save code is harder than asset code even though they share the same serializer. Everything else here (the object graph, delta saves, atomic writes) is in service of getting mutable state to and from disk safely, patch after patch.

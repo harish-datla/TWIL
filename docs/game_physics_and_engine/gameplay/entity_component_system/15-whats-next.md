@@ -1,0 +1,8 @@
+# What's next
+
+In this series the next page is The Gameplay Layer, which builds game rules on top of this entity model. Within ECS itself, the directions to go next:
+
+    Change detection. Track which components were modified since the last frame. Bevy stores added/changed ticks per component instance, so Changed<Health> filters per entity. That is a cheap per-entity test during iteration, not a way to skip the iteration: the query still walks every matching entity, so it stays O(n) with a smaller constant. Unity DOTS is the design that gets real skipping, because its change version is per chunk: ArchetypeChunk.DidChange lets a system reject a whole 16 KiB chunk without touching its contents. Granularity is what decides whether change detection saves work or just saves the body of the loop.
+    Serialization. Archetype tables are contiguous arrays of typed data. Serializing a game state is iterating each archetype and writing its arrays to disk. Deserialization reconstructs the tables. The regularity of the layout makes this simpler than serializing an arbitrary object graph.
+    Networking. ECS makes delta compression straightforward: for each component type, diff the current frame's array against the previous frame's array. Send only the changed entries. The deterministic system ordering that ECS encourages (Overwatch's approach) enables lockstep and rollback netcode patterns.
+    GPU-driven ECS. Store component arrays in GPU-visible buffers and run systems as compute shaders. The flat-array layout maps directly onto GPU buffers; the hard parts are structural changes, which a GPU handles poorly, and getting results back to CPU-side gameplay code without stalling.

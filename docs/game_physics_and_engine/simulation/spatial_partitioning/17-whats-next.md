@@ -1,0 +1,9 @@
+# What's next
+
+In this series the next page is Entity Component System, which organizes the game objects these structures index. Beyond that, GPU BVH construction is an active research area. Karras (2012) builds every node of the tree in parallel from sorted Morton codes[11], and Apetrei (2014) folded the bottom-up bounding-box pass into the same parallel sweep. Vendor builders behind DXR, Vulkan RT and OptiX are mostly closed, so which algorithm a given driver runs is generally not public.
+
+On the CPU, Embree ships separate builders selected by build quality rather than one layered build, documented as "a high-quality SAH builder using spatial splits, a standard SAH builder, and a very fast Morton builder", plus a refit path[16]. Mixing Morton and SAH construction in one tree is also a real technique. Lauterbach et al.'s hybrid builds the highest levels with LBVH and the rest with SAH, and reports that it "attains roughly half the construction speed of LBVH while retaining essentially all the quality of the pure SAH-based construction"[10].
+
+Learned index structures for spatial data are an emerging research direction. Kraska et al. (2018) showed that neural networks can replace B-tree indexes for 1D data. Extending this to spatial data (replacing R-trees or BVHs with learned models that predict which region of space contains relevant objects) is an active area, though nothing has shipped in a game engine yet.
+
+Compressed octrees for voxel data are relevant to voxel engines and sparse volume rendering. Kämpe, Sintorn and Assarsson (2013) turned the sparse voxel octree into a DAG (a directed acyclic graph in which identical subtrees are stored once and shared) and report node counts one to three orders of magnitude lower in every scene they tested, irregular ones included[26]. 
