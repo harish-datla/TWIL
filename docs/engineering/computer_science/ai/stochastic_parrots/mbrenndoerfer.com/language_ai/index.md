@@ -1,0 +1,52 @@
+# Language AI
+
+[Back to Stochastic Parrots](../../index.md)
+
+## Volumes
+
+1. [Language Data and Classical NLP](01-classical_nlp/index.md)
+2. [Embeddings, Tokenization, and Sequence Labeling](02-embeddings_tokenization_sequence_labeling/index.md)
+3. [Linguistic Structure and Meaning](03-linguistic_structure_and_meaning/index.md)
+4. [Neural NLP and Sequence Models](04-neural_nlp_and_sequence_modeling/index.md)
+5. [Transformers from First Principles](05-transformers_from_first_principle/index.md)
+6. [Efficient, Long-Context, and Alternative Architectures](06-efficient_long_context_and_alternative_architectures/index.md)
+7. [Pre-training Data and Scaling](07-pretraining_data_and_scaling/index.md)
+8. [Encoder, Multilingual, and Translation Models](08-encoder_multilingual_and_translation_models/index.md)
+9. [Decoder Language Models and Capabilities](09-decoder_language_models_and_capabilities/index.md)
+10. [Large-Scale Training and Sparse Models](10-large_scale_training_and_sparse_models/index.md)
+11. [Fine-tuning and Efficient Adaptation](11-fine_tuning_and_efficient_adaptation/index.md)
+12. [Alignment, Preferences, and Oversight](12-alignment_preferences_and_oversight/index.md)
+13. [Reasoning and Verifiable Learning](13-reasoning_and_verifiable_learning/index.md)
+14. [Efficient Inference and On-Device Models](14-efficient_inference_and_on_device_models/index.md)
+15. [Retrieval, Knowledge, and Memory](15-retrieval_knowledge_and_memory/index.md)
+16. [Agents and AI Coding Systems](16-agents_and_ai_coding_systems/index.md)
+17. [Speech, Multimodal, and Embodied Language](17-speech_multimodal_and_embodied_language/index.md)
+18. [Evaluation, Factuality, and Reliability](18-evaluation_factuality_and_reliability/index.md)
+19. [Responsible, Secure, and Interpretable Language AI](19-reponsible_secure_and_interpretable_language_ai/index.md)
+20. [Applications, Production, and Compound AI Systems](20-applications_production_and_compound_ai_systems/index.md)
+
+## Appendices
+
+- [Appendix](a-appendix/index.md)
+
+- [Agents and AI Coding Systems](16-agents_and_ai_coding_systems/index.md)
+- [Alignment Preferences and Oversight](12-alignment_preferences_and_oversight/index.md)
+- [Applications, Production and Compound AI Systems](20-applications_production_and_compound_ai_systems/index.md)
+- [Classical NLP](01-classical_nlp/index.md)
+- [Decoder Language Models and Capabilities](09-decoder_language_models_and_capabilities/index.md)
+- [Efficient Inference and On-Device Models](14-efficient_inference_and_on_device_models/index.md)
+- [Efficient Long Context and Alternative Architectures](06-efficient_long_context_and_alternative_architectures/index.md)
+- [Embedding, Tokenization and Sequence Labeling](embedding_tokenization_sequence_labeling/index.md)
+- [Embeddings, Tokenization and Sequence Labeling](02-embeddings_tokenization_sequence_labeling/index.md)
+- [Encoder, Multilingual and Translation Models](08-encoder_multilingual_and_translation_models/index.md)
+- [Evaluation, Factuality and Reliability](18-evaluation_factuality_and_reliability/index.md)
+- [Fine-Tuning and Efficient Adaptation](11-fine_tuning_and_efficient_adaptation/index.md)
+- [Large-Scale Training and Sparse Models](10-large_scale_training_and_sparse_models/index.md)
+- [Linguistic Structure and Meaning](03-linguistic_structure_and_meaning/index.md)
+- [Neural NLP and Sequence Modeling](04-neural_nlp_and_sequence_modeling/index.md)
+- [Pretraining Data and Scaling](07-pretraining_data_and_scaling/index.md)
+- [Reasoning and Verifiable Learning](13-reasoning_and_verifiable_learning/index.md)
+- [Responsible, Secure and Interpretable Language AI](19-reponsible_secure_and_interpretable_language_ai/index.md)
+- [Retrieval, Knowledge and Memory](15-retrieval_knowledge_and_memory/index.md)
+- [Speech, Multimodal and Embodied Language](17-speech_multimodal_and_embodied_language/index.md)
+- [Transformers from First Principles](05-transformers_from_first_principle/index.md)

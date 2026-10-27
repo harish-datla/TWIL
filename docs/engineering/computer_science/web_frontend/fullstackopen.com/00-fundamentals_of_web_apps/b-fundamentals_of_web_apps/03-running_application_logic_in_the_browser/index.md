@@ -1,0 +1,5 @@
+# Running application logic in the browser
+
+[Back to Fundamentals of web apps](../index.md)
+
+[Read online](https://fullstackopen.com/en/part0/fundamentals_of_web_apps#running-application-logic-in-the-browser)
