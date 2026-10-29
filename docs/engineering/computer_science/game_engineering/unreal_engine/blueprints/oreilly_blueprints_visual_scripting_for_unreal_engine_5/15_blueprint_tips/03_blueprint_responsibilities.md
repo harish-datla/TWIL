@@ -1,0 +1,3 @@
+# Blueprint Responsibilities
+
+Coming soon.

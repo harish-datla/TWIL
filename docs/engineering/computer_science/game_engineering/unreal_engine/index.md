@@ -35,5 +35,6 @@ This curriculum maps an Unreal Engine C++ gameplay course to free equivalents: E
 - [23. Assignment 7](23_assignment_7/index.md)
 - [24. UMG (User Interfaces)](24_umg_user_interfaces/index.md)
 - [25. Cooking & Wrapping Up](25_cooking_and_wrapping_up/index.md)
+- [27. O'Reilly: Blueprints Visual Scripting for Unreal Engine 5](oreilly_blueprints_visual_scripting_for_unreal_engine_5/index.md)
 - [X. Feedback](26_feedback/index.md)
 
